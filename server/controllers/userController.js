@@ -1,4 +1,4 @@
-import User from '../models/user.js'; 
+import User from '../models/auth.js'; 
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 
@@ -83,3 +83,8 @@ export const loginUser = async (req, res) => {
         res.status(500).send("Server error");
     }
 };
+
+
+export const logoutUser= async (req, res)=>{
+
+}

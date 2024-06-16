@@ -47,9 +47,6 @@ io.use((socket, next) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.send('Hello World');
-});
 
 // Routes
 app.use('/api/users', userRoutes);
