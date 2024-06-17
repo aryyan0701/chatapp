@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import jwt from "jsonwebtoken";
-import userRoutes from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -49,7 +49,7 @@ io.use((socket, next) => {
 
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 
 // Database connection
 const dburl = process.env.MONGODB_URL;

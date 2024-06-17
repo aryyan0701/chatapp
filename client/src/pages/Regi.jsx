@@ -7,14 +7,15 @@ function Regi() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    fullname: "",
+    username: "",
     password: "",
-    phoneno: "",
+    gender: "",
+    profilepic: ""
   });
   const navigate = useNavigate();
 
-  const { name, email, password, phoneno } = formData;
+  const { fullname, username, password, gender, profilepic } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,16 +23,16 @@ function Regi() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const data = { name, email, password, phoneno };
+    const data = { fullname, username, password, gender, profilepic };
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/users/register",
+        "http://localhost:8080/api/auth/register", // Ensure the endpoint matches the backend route
         data,
         {
           headers: {
             "Content-Type": "application/json",
-          },
+          }
         }
       );
       console.log(res.data);
@@ -52,11 +53,11 @@ function Regi() {
   return (
     <>
       <div
-        className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10 bg-stone-600"
-        // style={{
-        //   backgroundImage:
-        //     "url('https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg')",
-        // }}
+        className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10"
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/originals/3d/f4/37/3df437922930cf2e2cbbe9f5b22132d3.jpg')",
+        }}
       >
         <div className="relative z-10 w-full max-w-lg md:max-w-md p-10 space-y-4 bg-zinc-800 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold text-white text-center">
@@ -65,34 +66,34 @@ function Regi() {
           <form onSubmit={onSubmit}>
             <div>
               <label
-                htmlFor="name"
+                htmlFor="fullname"
                 className="block text-lg font-medium text-gray-300"
               >
-                Name
+                Full Name
               </label>
               <input
                 type="text"
-                name="name"
-                value={name}
+                name="fullname"
+                value={fullname}
                 onChange={onChange}
                 required
-                placeholder="Enter your username"
+                placeholder="Enter your full name"
                 className="w-full px-4 py-2 mt-2 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 focus:border-indigo-500"
               />
 
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-lg font-medium text-gray-300 mt-4"
               >
-                Email
+                Username
               </label>
               <input
                 type="text"
-                name="email"
-                value={email}
+                name="username"
+                value={username}
                 onChange={onChange}
                 required
-                placeholder="Enter your email"
+                placeholder="Enter your username"
                 className="w-full px-4 py-2 mt-2 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 focus:border-indigo-500"
               />
 
@@ -113,20 +114,21 @@ function Regi() {
               />
 
               <label
-                htmlFor="phoneno"
+                htmlFor="gender"
                 className="block text-lg font-medium text-gray-300 mt-4"
               >
-                Phone No
+                Gender
               </label>
-              <input
-                type="text"
-                name="phoneno"
-                value={phoneno}
+              <select
+                name="gender"
+                value={gender}
                 onChange={onChange}
-                required
-                placeholder="Enter your phone no"
                 className="w-full px-4 py-2 mt-2 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 focus:border-indigo-500"
-              />
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
 
               <button
                 type="submit"
@@ -141,7 +143,7 @@ function Regi() {
               </button>
               <p className="text-sm text-center text-white">
                 Already have an account..?{" "}
-                <Link to="/login" classname="font-bold text-white">
+                <Link to="/login" className="font-bold text-white">
                   Click here
                 </Link>
               </p>
@@ -151,7 +153,7 @@ function Regi() {
             <p className="mt-4 text-center text-sm text-white">{message}</p>
           )}
         </div>
-      </div>
+        </div>
     </>
   );
 }

@@ -14,7 +14,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,11 +22,11 @@ function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const data = { email, password };
+    const data = { username, password };
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "http://localhost:8080/api/auth/login",
         data,
         {
           headers: {
@@ -35,6 +35,8 @@ function Login() {
         }
       );
       console.log(res.data);
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("user", JSON.stringify(res.data.user));
 
           // Establish WebSocket connection
           const socket = io("http://localhost:8080", {
@@ -61,33 +63,33 @@ function Login() {
   return (
     <>
       <div
-        className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10 bg-stone-600"
-        // style={{
-        //   backgroundImage:
-        //     "url('https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg')",
-        // }}
+        className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10"
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/originals/3d/f4/37/3df437922930cf2e2cbbe9f5b22132d3.jpg')",
+        }}
       >
         <div className="relative z-10 w-full max-w-lg md:max-w-md p-10 space-y-4 bg-zinc-800 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold text-white text-center">Login</h2>
           <form action="" type="submit" onSubmit={onSubmit}>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-lg font-medium text-gray-300"
               >
-                Email
+                username
               </label>
               <input
                 type="text"
-                name="email"
-                value={email}
+                name="username"
+                value={username}
                 onChange={onChange}
                 required
                 placeholder="Enter your username"
                 className="w-full px-4 py-2 mt-2 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:ring focus:ring-indigo-500 focus:border-indigo-500"
               />
               <label
-                htmlFor="email"
+                htmlFor="password"
                 className="block text-lg font-medium text-gray-300 mt-4"
               >
                 Password
