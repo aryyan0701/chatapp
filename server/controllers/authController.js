@@ -1,6 +1,6 @@
-import User from '../models/auth.js'; // Ensure the path to your model is correct
+import User from '../models/auth.js';
 import bcrypt from 'bcryptjs';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export const registerUser = async (req, res) => {
   const { fullname, username, password, gender } = req.body;
@@ -19,7 +19,7 @@ export const registerUser = async (req, res) => {
       username,
       password,
       gender,
-      profilepic: gender === 'male' ? boyProfilepic : girlProfilepic // Ensure gender value comparison is correct
+      profilepic: gender === 'male' ? boyProfilepic : girlProfilepic
     });
 
     const salt = await bcrypt.genSalt(10);

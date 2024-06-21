@@ -13,19 +13,19 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength:6
+        minlength: 6
     },
     gender: {
         type: String,
-        required:true,
-        enum:["male", "female"]
+        required: true,
+        enum: ["male", "female"]
     },
-    profilepic:{
-        type:String,
-        default:""
+    profilepic: {
+        type: String,
+        default: ""
     }
-},{timestamps:true});
+}, { timestamps: true });
 
-const User = mongoose.model("Users", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 export default User;

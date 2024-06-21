@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import io from "socket.io-client";
+import Navbar from "../components/Navbar";
 
 function Login() {
   const [message, setMessage] = useState("");
@@ -62,6 +63,7 @@ function Login() {
 
   return (
     <>
+    <Navbar/>
       <div
         className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10"
         style={{

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import Navbar from "../components/Navbar";
 
 function Regi() {
   const [message, setMessage] = useState("");
@@ -17,8 +18,7 @@ function Regi() {
 
   const { fullname, username, password, gender, profilepic } = formData;
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ function Regi() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/auth/register", // Ensure the endpoint matches the backend route
+        "http://localhost:8080/api/auth/register",
         data,
         {
           headers: {
@@ -52,11 +52,11 @@ function Regi() {
 
   return (
     <>
+      <Navbar />
       <div
         className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10"
         style={{
-          backgroundImage:
-            "url('https://i.pinimg.com/originals/3d/f4/37/3df437922930cf2e2cbbe9f5b22132d3.jpg')",
+          backgroundImage: "url('https://i.pinimg.com/originals/3d/f4/37/3df437922930cf2e2cbbe9f5b22132d3.jpg')",
         }}
       >
         <div className="relative z-10 w-full max-w-lg md:max-w-md p-10 space-y-4 bg-zinc-800 rounded-lg shadow-lg">
@@ -153,7 +153,7 @@ function Regi() {
             <p className="mt-4 text-center text-sm text-white">{message}</p>
           )}
         </div>
-        </div>
+      </div>
     </>
   );
 }

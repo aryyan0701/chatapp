@@ -2,9 +2,16 @@ import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { RiWechat2Line } from "react-icons/ri";
 import { FaUserLarge } from "react-icons/fa6";
+import { IoLogOut } from "react-icons/io5";
 
-function Dashboard() {
+function Profile() {
   const navigate = useNavigate();
+  const logOut = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    // Redirect to login or home page
+    navigate("/login");
+};
   return (
     <>
        <header className="bg-zinc-800 py-2">
@@ -16,14 +23,15 @@ function Dashboard() {
       <nav className="flex items-center font-Hublot">
         <ul className="flex space-x-2 sm:space-x-1 text-gray-300 font-bold select-none">
           <li>
-            <Link to="/about" className="px-2 sm:px-4 py-2 block font-bold text-2xl text-white hover:scale-110 hover:text-gray-300 ease-in-out transition-all duration-300">
-              About
+            <Link to="/dashboard" className="px-2 sm:px-4 py-2 block font-bold text-2xl text-white hover:scale-110 hover:text-gray-300 ease-in-out transition-all duration-300">
+              Dash
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="px-2 sm:px-4 py-2 block font-bold text-xl text-white hover:scale-110 hover:text-gray-300 ease-in-out transition-all duration-300">
-              <FaUserLarge className='sm:inline text-white text-2xl'/>
-            </Link>
+            <span className="px-2 sm:px-4 py-2 block font-bold text-xl text-white hover:scale-110 hover:text-gray-300 ease-in-out transition-all space-x-1 duration-300">
+              
+        <span className="hidden sm:inline text-white font-bold text-2xl select-none" onClick={logOut}>Logout</span>
+            </span>
           </li>
           </ul>
       </nav>
@@ -37,8 +45,9 @@ function Dashboard() {
         }}
       >
         <div className="relative z-10 w-full max-w-lg md:max-w-md p-10 space-y-4 bg-zinc-800 rounded-lg shadow-lg">
-    <div className='text-2xl font-semibold text-white text-center'>Welcome to Dashboard</div>
+    <div className='text-2xl font-semibold text-white text-center'>Welcome to Profile</div>
     <div className="text-center">
+    <button className='text-xl p-2 rounded bg-blue-300  text-black' onClick={logOut}>Logout</button>
     </div>
     </div>
     </div>
@@ -46,4 +55,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Profile;

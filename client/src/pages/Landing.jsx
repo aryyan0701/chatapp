@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function Landing() {
   return (
     <>
-    
+     <Navbar/>
     <div
         className="relative flex justify-center items-center min-h-screen bg-cover bg-center pt-10"
         style={{
