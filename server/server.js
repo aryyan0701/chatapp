@@ -5,7 +5,10 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import jwt from "jsonwebtoken";
+import cookieParse from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import { parse } from "path";
 
 dotenv.config();
 
@@ -15,6 +18,7 @@ const server = createServer(app);
 
 // Middleware
 app.use(express.json());
+app.use(cookieParse());
 app.use(cors());
 
 const io = new Server(server, {
@@ -50,6 +54,7 @@ io.use((socket, next) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/message', messageRoutes);
 
 // Database connection
 const dburl = process.env.MONGODB_URL;

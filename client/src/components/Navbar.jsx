@@ -22,11 +22,11 @@ function Navbar() {
               Login
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/about" className="px-2 sm:px-4 py-2 block font-bold text-xl text-white hover:scale-110 hover:text-gray-300 ease-in-out transition-all duration-300">
               About
             </Link>
-          </li>
+          </li> */}
           </ul>
       </nav>
     </div>

@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { RiWechat2Line } from "react-icons/ri";
-import { FaUserLarge } from "react-icons/fa6";
-import { IoLogOut } from "react-icons/io5";
 
 function Profile() {
   const navigate = useNavigate();
